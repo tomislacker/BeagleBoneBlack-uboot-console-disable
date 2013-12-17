@@ -232,7 +232,7 @@ logMessage "Configuring and building u-boot" && indentMore
 # 4.a) distclean
 ###
 logMessage "[make] target=distclean" && indentMore
-make ARCH=arm CROSS_COMPILE=${CC} distclean \
+make ARCH=arm CROSS_COMPILE=${CC} distclean >toolchain.make1.log \
     && logMessage "Success" \
     || fatalMessage 108 "FAILED"
 indentLess
@@ -241,7 +241,7 @@ indentLess
 # 4.b) config
 ###
 logMessage "[make] target=am335x_evm_config" && indentMore
-make ARCH=arm CROSS_COMPILE=${CC} am335x_evm_config \
+make ARCH=arm CROSS_COMPILE=${CC} am335x_evm_config >toolchain.make2.log \
     && logMessage "Success" \
     || fatalMessage 109 "FAILED"
 indentLess
@@ -265,7 +265,7 @@ indentLess
 # 4.d) build
 ###
 logMessage "[make] Final Build" && indentMore
-make ARCH=arm CROSS_COMPILE=${CC} \
+make ARCH=arm CROSS_COMPILE=${CC} >>toolchain.make3.log \
     && logMessage "Success" \
     || fatalMessage 110 "FAILED"
 indentLess
